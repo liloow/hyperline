@@ -70,7 +70,7 @@ export default class Network extends Component {
     const { download, upload } = this.state
     return (
       <div className='wrapper'>
-        <PluginIcon /> {download}kB/s {upload}kB/s
+        <PluginIcon /> {download < 1024 ? `${download}k` : `${(download / 1024).toFixed(2)}M`}B/s {upload < 1024 ? `${upload}k` : `${(download / 1024).toFixed(2)}M`}B/s
 
         <style jsx>{`
           .wrapper {
