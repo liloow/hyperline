@@ -37,7 +37,7 @@
     "react": "^16.4.1",
     "spotify-node-applescript": "^1.1.0",
     "styled-jsx": "2.2.6",
-    "systeminformation": "^3.4.1"
+    "systeminformation": "^3.42.9"
   },
   "devDependencies": {
     "babel-core": "^6.11.4",
