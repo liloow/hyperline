@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import decorate from 'hyper/decorate';
 import { colorList } from '../utils/colors';
+if (typeof process.env.COLORZ_HYPERLINE === "string") colorList = [...process.env.COLORZ_HYPERLINE.split(',')]
+let [black, ...colorList] = colorList
 
 class HyperLine extends Component {
   static propTypes() {
@@ -12,12 +14,13 @@ class HyperLine extends Component {
 
   render() {
     const { plugins, ...props } = this.props;
+    const multi = plugins.length - 2 // to skip black
 
     return (
       <div className="line" {...props}>
         {plugins.map((Component, index) => {
           // +1 to skip black
-          let color = colorList[index + 1] || Math.ceil(Math.random() * 7);
+          let color = colorList[index] || Math.ceil(Math.random() * multi);
           return (
             <div key={index} className="wrapper" style={{ color: color, stroke: color }}>
               <Component />
