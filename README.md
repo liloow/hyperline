@@ -1,5 +1,6 @@
-HyperLine
+# HyperLine
 =========
+**[Forked from HyperLine](https://github.com/Hyperline/hyperline)**
 
 **HyperLine is a status line plugin for [Hyper.app](https://hyper.is/)**. It shows you useful system information such as free memory, uptime and CPU usage.
 
@@ -9,18 +10,30 @@ HyperLine
 
 * **NOTE:** HyperLine is not currently supported when using Microsoft Windows. See [this issue](https://github.com/Hyperline/hyperline/issues/57) for additional information.
 
-To install, edit `~/.hyper.js` and add `"hyperline"` to `plugins`:
+To install, `clone` this repo into `~/.hyper-plugins/local/hyperline`
+```bash
+# SSH
+git clone git@github.com:liloow/hyperline.git ~/.hyper_plugins/local/
 
+#HTTPS
+git clone https://github.com/liloow/hyperline.git ~/.hyper_plugins/local/
 ```
-plugins: [
+**AND** 
+
+edit `~/.hyper.js` and add `"hyperline"` to `localPlugins`:
+```
+localPlugins: [
   "hyperline",
 ],
 ```
 
 ## Styling the line
 
-We implemented the same mechanism for styling/creating css classes that Hyper uses.
-This will allow you to create custom HyperLine themes the same way you would create a Hyper css theme.
+You can override the default corlors by providing a comma speparated list of colors your own ordered colors array via `COLORZ_HYPERLINE`: 
+```bash
+  export COLORZ_HYPERLINE=" 'yellow', '#FFFF00', "ghostwhite"
+```
+**Note:** If the provided array does not provide enough colors, it will fallback onto the default list
 
 ## Configuring plugins
 Add the names of plugins in the order in which you would like them to be displayed to your `~/.hyper.js`:
@@ -42,15 +55,8 @@ You can see a list of all available plugins in [`src/lib/plugins/index.js`](http
 
 Feel free to contribute to HyperLine by [requesting a feature](https://github.com/hyperline/hyperline/issues/new), [submitting a bug](https://github.com/hyperline/hyperline/issues/new) or contributing code.
 
-To set up the project for development:
 
-1. Clone this repository into `~/.hyper_plugins/local/`
-2. Run `npm install` within the project directory
-3. Run `npm run build` to build the plugin **OR** `npm run dev` to build the plugin and watch for file changes.
-4. Add the name of the directory to `localPlugins` in `~/.hyper.js`.
-5. Reload terminal window
-
-## Authors
+## Original Authors
 
 - Nick Tikhonov [@nicktikhonov](https://github.com/nicktikhonov)
 - Tim Neutkens [@timneutkens](https://github.com/timneutkens)
