@@ -8,10 +8,7 @@ class PluginIcon extends Component {
     return (
       <SvgIcon>
         <g fill="none" fillRule="evenodd">
-          <g
-            className='cpu-icon'
-            transform="translate(1.000000, 1.000000)"
-          >
+          <g className="cpu-icon" transform="translate(1.000000, 1.000000)">
             <g>
               <path d="M3,3 L11,3 L11,11 L3,11 L3,3 Z M4,4 L10,4 L10,10 L4,10 L4,4 Z" />
               <rect x="5" y="5" width="4" height="4" />
@@ -53,14 +50,14 @@ export default class Cpu extends Component {
     super(props)
 
     this.state = {
-      cpuLoad: 0
+      cpuLoad: 0,
     }
   }
 
   getCpuLoad() {
     cpuLoad().then(({ currentload }) =>
       this.setState({
-        cpuLoad: leftPad(currentload.toFixed(2), 2, 0)
+        cpuLoad: leftPad(currentload.toFixed(2), 2, 0),
       })
     )
   }
@@ -76,9 +73,8 @@ export default class Cpu extends Component {
 
   render() {
     return (
-      <div className='wrapper'>
+      <div className="wrapper">
         <PluginIcon /> {this.state.cpuLoad}
-
         <style jsx>{`
           .wrapper {
             display: flex;

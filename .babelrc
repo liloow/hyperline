@@ -1,17 +1,4 @@
 {
-  "presets": ["react"],
-  "plugins": [
-    [
-      "styled-jsx/babel",
-      {
-        "vendorPrefixes": false
-      }
-    ],
-    "transform-object-rest-spread"
-  ],
-  "env": {
-    "test": {
-      "presets": ["es2015"]
-    }
-  }
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": ["@babel/plugin-proposal-class-properties"]
 }

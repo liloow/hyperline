@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import decorate from 'hyper/decorate'
 
 class HyperLine extends Component {
   static propTypes() {
     return {
-      plugins: PropTypes.array.isRequired
+      plugins: PropTypes.array.isRequired,
     }
   }
 
@@ -24,6 +23,7 @@ class HyperLine extends Component {
           .line {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             position: absolute;
             overflow: hidden;
             bottom: 0;
@@ -48,4 +48,4 @@ class HyperLine extends Component {
   }
 }
 
-export default decorate(HyperLine, 'HyperLine')
+export default HyperLine

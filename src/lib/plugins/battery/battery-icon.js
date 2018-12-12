@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import Critical from './critical'
 import Charging from './charging'
 import Draining from './draining'
@@ -18,7 +18,7 @@ function BatteryIcon({ charging, percentage }) {
 
 BatteryIcon.propTypes = {
   charging: PropTypes.bool,
-  percentage: PropTypes.number
+  percentage: PropTypes.number,
 }
 
 export default BatteryIcon

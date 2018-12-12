@@ -15,17 +15,17 @@ export default class Battery extends Component {
 
     this.state = {
       charging: false,
-      percentage: '--'
+      percentage: '--',
     }
 
-    this.batteryEvents = [ 'chargingchange', 'chargingtimechange', 'dischargingtimechange', 'levelchange' ]
+    this.batteryEvents = ['chargingchange', 'chargingtimechange', 'dischargingtimechange', 'levelchange']
     this.handleEvent = this.handleEvent.bind(this)
   }
 
   setBatteryStatus(battery) {
     this.setState({
       charging: battery.charging,
-      percentage: Math.floor(battery.level * 100)
+      percentage: Math.floor(battery.level * 100),
     })
   }
 
@@ -55,9 +55,8 @@ export default class Battery extends Component {
     const { charging, percentage } = this.state
 
     return (
-      <div className='wrapper'>
+      <div className="wrapper">
         <BatteryIcon charging={charging} percentage={Number(percentage)} /> {leftPad(percentage, 2, 0)}%
-
         <style jsx>{`
           .wrapper {
             display: flex;

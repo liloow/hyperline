@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 export default class SvgIcon extends Component {
   static propTypes() {
     return {
-      children: PropTypes.element.isRequired
+      children: PropTypes.element.isRequired,
     }
   }
 

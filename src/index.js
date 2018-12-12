@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import HyperLine from './lib/core/hyperline'
 import { getColorList } from './lib/utils/colors'
 import hyperlinePlugins from './lib/plugins'
@@ -13,7 +12,6 @@ export function reduceUI(state, { type, config }) {
     default:
       break
   }
-
   return state
 }
 
@@ -28,13 +26,13 @@ export function mapHyperState({ ui: { colors, fontFamily, hyperline } }, map) {
   return Object.assign({}, map, {
     colors: getColorList(colors),
     fontFamily,
-    userPlugins
+    userPlugins,
   })
 }
 
 function pluginsByName(plugins) {
   const dict = {}
-  plugins.forEach((plugin) => {
+  plugins.forEach(plugin => {
     dict[plugin.displayName()] = plugin
   })
 
@@ -53,7 +51,7 @@ function filterPluginsByConfig(plugins) {
   plugins = pluginsByName(plugins)
   const filtered = []
 
-  userPluginNames.forEach((name) => {
+  userPluginNames.forEach(name => {
     if (plugins.hasOwnProperty(name)) {
       filtered.push(plugins[name])
     }
@@ -62,34 +60,33 @@ function filterPluginsByConfig(plugins) {
   return filtered
 }
 
-export function decorateHyperLine(HyperLine) {
-  return class extends Component {
-    static displayName() {
-      return 'HyperLine'
-    }
+function filterPluginsByConfig(plugins) {
+  const config = window.config.getConfig().hyperline
+  if (!config) return plugins
 
-    static propTypes() {
-      return {
-        plugins: PropTypes.array.isRequired
-      }
-    }
-
-    static get defaultProps() {
-      return {
-        plugins: []
-      }
-    }
-
-    render() {
-      const plugins = [...this.props.plugins, ...hyperlinePlugins]
-
-      return <HyperLine {...this.props} plugins={filterPluginsByConfig(plugins)} />
-    }
+  const userPluginNames = config.plugins
+  if (!userPluginNames) {
+    return plugins
   }
+
+  plugins = pluginsByName(plugins)
+  const filtered = []
+
+  userPluginNames.forEach(name => {
+    if (plugins.hasOwnProperty(name)) {
+      filtered.push(plugins[name])
+    }
+  })
+
+  return filtered
 }
 
-export function decorateHyper(Hyper) {
-  return class extends Component {
+exports.decorateHyper = (Hyper, { React, notify }) => {
+  return class extends React.Component {
+    constructor(props, context) {
+      super(props, context)
+    }
+
     static displayName() {
       return 'Hyper'
     }
@@ -98,19 +95,18 @@ export function decorateHyper(Hyper) {
       return {
         colors: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
         fontFamily: PropTypes.string,
-        customChildren: PropTypes.element.isRequired
+        customChildren: PropTypes.element.isRequired,
       }
     }
-
     render() {
       const customChildren = (
-        <div>
-          {this.props.customChildren}
-          <HyperLine style={{ fontFamily: this.props.fontFamily }} />
-        </div>
+        <HyperLine style={{ fontFamily: 'Roboto' }} {...{ plugins: filterPluginsByConfig(hyperlinePlugins) }}>
+          <div>
+            <p>Poop</p>
+          </div>
+        </HyperLine>
       )
-
-      return <Hyper {...this.props} customChildren={customChildren} />
+      return React.createElement(Hyper, Object.assign({}, this.props, { customChildren }))
     }
   }
 }

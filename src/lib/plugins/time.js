@@ -7,10 +7,7 @@ class PluginIcon extends Component {
     return (
       <SvgIcon>
         <g fill="none" fillRule="evenodd">
-          <g
-            className='time-icon'
-            transform="translate(1.000000, 1.000000)"
-          >
+          <g className="time-icon" transform="translate(1.000000, 1.000000)">
             <g>
               <path d="M0,0 L14,0 L14,14 L0,14 L0,0 Z M1,1 L13,1 L13,13 L1,13 L1,1 Z" />
               <path d="M6,2 L7,2 L7,7 L6,7 L6,2 Z M6,7 L10,7 L10,8 L6,8 L6,7 Z" />
@@ -37,7 +34,7 @@ export default class Time extends Component {
     super(props)
 
     this.state = {
-      time: this.getCurrentTime()
+      time: this.getCurrentTime(),
     }
   }
 
@@ -58,9 +55,8 @@ export default class Time extends Component {
 
   render() {
     return (
-      <div className='wrapper'>
+      <div className="wrapper">
         <PluginIcon /> {this.state.time}
-
         <style jsx>{`
           .wrapper {
             display: flex;

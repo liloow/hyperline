@@ -18,22 +18,22 @@ const colorList = [
   'lightCyan',
   'lightWhite',
   'colorCubes',
-  'grayscale'
-];
+  'grayscale',
+]
 
 export function getColorList(colors) {
   // For forwards compatibility, return early if it's already an object
   if (!Array.isArray(colors)) {
-    return colors;
+    return colors
   }
 
   // For backwards compatibility
   const colorsList = {}
-  colors.forEach( ( color, index ) => {
+  colors.forEach((color, index) => {
     colorsList[colorList[index]] = color
-  });
+  })
 
-  return colorsList;
+  return colorsList
 }
 
 export function colorExists(name) {
